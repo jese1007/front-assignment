@@ -3,8 +3,6 @@ import { MtxGridColumn } from '@ng-matero/extensions/grid';
 import { Assignment } from '@shared/model/assignments.model';
 import { AssignmentsService } from '@shared/assignments.service';
 import { PageEvent } from '@angular/material/paginator';
-import { SettingsService } from '@core';
-import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -60,7 +58,7 @@ export class AssignmentsComponent {
     p.page += 1;
     return p;
   }
-  constructor(private assignmentsService: AssignmentsService, private ngZone: NgZone, private settings: SettingsService) {}
+  constructor(private assignmentsService: AssignmentsService, private ngZone: NgZone) {}
 
   ngOnInit(): void {
     console.log(
@@ -70,9 +68,6 @@ export class AssignmentsComponent {
     // page et limit, récupérer leur valeurs si elles existent
     // et les passer à la méthode getAssignments
     // TODO
-    this.notifySubscription = this.settings.notify.subscribe(res => {
-      console.log(res);
-    });
     this.getAssignments();
   }
 
