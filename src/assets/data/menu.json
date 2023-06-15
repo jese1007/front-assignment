@@ -1,0 +1,20 @@
+{
+  "menu": [
+    {
+      "route": "dashboard",
+      "name": "dashboard",
+      "type": "link",
+      "icon": "dashboard",
+      "badge": {
+        "color": "red-500",
+        "value": "5"
+      }
+    },
+    {
+      "route": "assignments",
+      "name": "assignments",
+      "type": "link",
+      "icon": "description"
+    }
+  ]
+}

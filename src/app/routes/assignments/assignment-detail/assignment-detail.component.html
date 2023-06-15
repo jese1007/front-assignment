@@ -1,0 +1,21 @@
+<page-header class="bg-blue-600"></page-header>
+<div class="col-sm-12">
+  <mat-card *ngIf="assignmentTransmis">
+    <mat-card-content>
+      <div class="text-center">
+        <h2 class="m-t-0 m-b-8 f-w-400">{{ assignmentTransmis.nom }}</h2>
+        <p class="m-t-0 m-b-8">Date de rendu : {{assignmentTransmis.dateDeRendu | date: 'dd/MM/yy'}}</p>
+      </div>
+      <mat-nav-list class="m-x--16 m-b--16 m-t-16">
+        <mat-divider></mat-divider>
+        <a mat-list-item routerLink="/assignments/edit/{{ assignmentTransmis.id }}">
+          <mat-icon matListItemIcon>settings</mat-icon> EDIT
+        </a>
+        <mat-divider></mat-divider>
+        <a mat-list-item (click)="onDeleteAssignment()">
+          <mat-icon matListItemIcon>delete</mat-icon> DELETE
+        </a>
+      </mat-nav-list>
+    </mat-card-content>
+  </mat-card>
+</div>

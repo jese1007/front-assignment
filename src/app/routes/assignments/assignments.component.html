@@ -1,0 +1,42 @@
+<breadcrumb></breadcrumb>
+<page-header class="bg-blue-600"></page-header>
+
+<nav class="ajouterBtn">
+  <a routerLink="/assignments/add">
+    <button mat-flat-button color="accent"> Ajouter Assignment
+    </button>
+  </a>
+</nav>
+
+<mat-card>
+  <mat-tab-group>
+    <mat-tab label="Rendu">
+      <div class="m-16">
+        <mtx-grid [data]="list"
+                  [columns]="columns"
+                  [length]="totalPages"
+                  [loading]="isLoading"
+                  [pageOnFront]="false"
+                  [pageIndex]="page"
+                  [pageSize]="limit"
+                  [pageSizeOptions]="[5,10,20]"
+                  (page)="handlePage($event)">
+        </mtx-grid>
+      </div>
+    </mat-tab>
+    <mat-tab label="Non Rendu">
+      <div class="m-16">
+        <mtx-grid [data]="list"
+                  [columns]="columns"
+                  [length]="totalPages"
+                  [loading]="isLoading"
+                  [pageOnFront]="false"
+                  [pageIndex]="page"
+                  [pageSize]="limit"
+                  [pageSizeOptions]="[5,10,20]"
+                  (page)="handlePage($event)">
+        </mtx-grid>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>
