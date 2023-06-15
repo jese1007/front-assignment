@@ -43,7 +43,6 @@ export class AssignmentsComponent {
   hasNextPage = false;
   nextPage = 0;
 
-  notifySubscription!: Subscription;
 
   query = {
     q: 'user:nzbin',
