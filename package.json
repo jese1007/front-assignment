@@ -1,14 +1,14 @@
 {
-  "name": "ng-matero",
+  "name": "assignment",
   "version": "0.0.0-NOT-USED",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "test": "ng test",
     "test:ci": "ng test --browsers=ChromeHeadless --watch=false --code-coverage",
     "e2e": "ng e2e",
     "build": "npm install && ng build",
-    "build:prod": "ng build --base-href=/ng-matero/",
+    "build:prod": "ng build --base-href=/assignment/",
     "build:schematics": "npm run copy:schematics && cd schematics && npm run build && cd .. && npm run build:starter",
     "build:starter": "gulp --gulpfile gulpfile.js",
     "copy:schematics": "npm run clean:schematics && cpr schematics dist/schematics",
@@ -21,7 +21,7 @@
     "deploy": "ng deploy",
     "publish": "npm run build:schematics && cd dist/schematics && npm publish",
     "prepare": "husky install",
-    "analyze": "ng build --stats-json && webpack-bundle-analyzer dist/ng-matero/stats.json"
+    "analyze": "ng build --stats-json && webpack-bundle-analyzer dist/assignment/stats.json"
   },
   "private": true,
   "dependencies": {
@@ -45,11 +45,13 @@
     "@ngx-translate/http-loader": "^7.0.0",
     "angular-in-memory-web-api": "~0.15.0",
     "apexcharts": "^3.39.0",
+    "express": "^4.18.2",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.41",
     "ngx-permissions": "^15.0.1",
     "ngx-progressbar": "^9.0.0",
     "ngx-toastr": "^16.1.1",
+    "path": "^0.12.7",
     "photoviewer": "^3.7.1",
     "rxjs": "~7.8.0",
     "screenfull": "^6.0.2",
