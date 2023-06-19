@@ -15,6 +15,14 @@ import { AssignmentsComponent } from './assignments/assignments.component';
 import { AddAssignmentComponent } from './assignments/add-assignment/add-assignment.component';
 import { AssignmentDetailComponent } from './assignments/assignment-detail/assignment-detail.component';
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
+import { EtudiantComponent } from './etudiant/etudiant.component';
+import { EtudiantDetailComponent } from './etudiant/etudiant-detail/etudiant-detail.component';
+import { EtudiantEditComponent } from './etudiant/etudiant-edit/etudiant-edit.component';
+import { EtudiantAddComponent } from './etudiant/etudiant-add/etudiant-add.component';
+import { MatiereComponent } from './matiere/matiere.component';
+import { MatiereDetailComponent } from './matiere/matiere-detail/matiere-detail.component';
+import { MatiereEditComponent } from './matiere/matiere-edit/matiere-edit.component';
+import { MatiereAddComponent } from './matiere/matiere-add/matiere-add.component';
 
 const routes: Routes = [
   {
@@ -32,6 +40,14 @@ const routes: Routes = [
       { path: 'assignments/add', component: AddAssignmentComponent },
       { path: 'assignments/detail/:id', component: AssignmentDetailComponent },
       { path: 'assignments/edit/:id', component: EditAssignmentComponent },
+      { path: 'etudiant', component: EtudiantComponent },
+      { path: 'etudiant/add', component: EtudiantAddComponent },
+      { path: 'etudiant/detail/:id', component: EtudiantDetailComponent },
+      { path: 'etudiant/edit/:id', component: EtudiantEditComponent },
+      { path: 'matiere', component: MatiereComponent },
+      { path: 'matiere/add', component: MatiereAddComponent },
+      { path: 'matiere/detail/:id', component: MatiereDetailComponent },
+      { path: 'matiere/edit/:id', component: MatiereEditComponent },
       {
         path: 'design',
         loadChildren: () => import('./design/design.module').then(m => m.DesignModule),
@@ -75,7 +91,7 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent },
     ],
   },
-  { path: '**', redirectTo: 'dashboard' },
+  { path: '**', redirectTo: 'assignments' },
 ];
 
 @NgModule({

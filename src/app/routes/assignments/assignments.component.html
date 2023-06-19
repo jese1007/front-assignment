@@ -12,7 +12,7 @@
   <mat-tab-group>
     <mat-tab label="Rendu">
       <div class="m-16">
-        <mtx-grid [data]="list"
+        <mtx-grid [data]="listRendu"
                   [columns]="columns"
                   [length]="totalPages"
                   [loading]="isLoading"
@@ -26,7 +26,7 @@
     </mat-tab>
     <mat-tab label="Non Rendu">
       <div class="m-16">
-        <mtx-grid [data]="list"
+        <mtx-grid [data]="listNoRendu"
                   [columns]="columns"
                   [length]="totalPages"
                   [loading]="isLoading"

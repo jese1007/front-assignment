@@ -4,45 +4,45 @@ import { Assignment } from '@shared/model/assignments.model';
 import { AssignmentsService } from '@shared/assignments.service';
 import { PageEvent } from '@angular/material/paginator';
 
-
 @Component({
   selector: 'app-assignments',
   templateUrl: './assignments.component.html',
   styleUrls: ['./assignments.component.scss'],
 })
 export class AssignmentsComponent {
-  assignments: Assignment[] = [];
   columns: MtxGridColumn[] = [
     {
       header: 'Id',
-      field: 'Id',
-      formatter: (data: any) => `<a href="/assignments/detail/${data.id}" target="_blank">${data.id}</a>`,
+      field: '_id',
+      formatter: (data: any) =>
+        `<a href="/assignments/detail/${data._id}" target="_blank">${data._id}</a>`,
     },
-    { header: 'Nom', field: 'nom' },
-    { header: 'DateDeRendu', field: 'dateDeRendu' },
+    { header: 'Nom', field: 'name' },
+    { header: 'DateDeRendu', field: 'dueDate' },
     {
       header: 'Rendu',
-      field: 'rendu',
+      field: 'due',
       type: 'tag',
       tag: {
-        true: { text: 'Yes', color: 'red-100' },
-        false: { text: 'No', color: 'green-100' },
+        true: { text: 'Yes', color: 'green-100' },
+        false: { text: 'No', color: 'red-100' },
       },
     },
   ];
-  list: any[] = [];
+  listRendu: any[] = [];
+  listNoRendu: any[] = [];
   total = 0;
   isLoading = true;
 
-  page=1;
-  limit=10;
+  page = 1;
+  limit = 10;
   totalDocs = 0;
   totalPages = 0;
   hasPrevPage = false;
   prevPage = 0;
   hasNextPage = false;
   nextPage = 0;
-
+  match = true;
 
   query = {
     q: 'user:nzbin',
@@ -68,13 +68,12 @@ export class AssignmentsComponent {
     // et les passer à la méthode getAssignments
     // TODO
     this.getAssignments();
+    this.getAssignmentsNoRendu();
   }
 
   getAssignments() {
-    console.log('On va chercher les assignments dans le service');
-
-    this.assignmentsService.getAssignments(this.page, this.limit).subscribe(data => {
-      this.list = data.docs;
+    this.assignmentsService.getAssignments(this.page, this.limit, this.match).subscribe(data => {
+      this.listRendu = data.docs;
       this.page = data.page;
       this.limit = data.limit;
       this.total = data.totalDocs;
@@ -84,10 +83,23 @@ export class AssignmentsComponent {
       this.hasNextPage = data.hasNextPage;
       this.nextPage = data.nextPage;
       this.isLoading = false;
-      console.log('Données reçues');
     });
   }
 
+  getAssignmentsNoRendu() {
+    this.assignmentsService.getAssignments(this.page, this.limit, false).subscribe(data => {
+      this.listNoRendu = data.docs;
+      this.page = data.page;
+      this.limit = data.limit;
+      this.total = data.totalDocs;
+      this.totalPages = data.totalPages;
+      this.hasPrevPage = data.hasPrevPage;
+      this.prevPage = data.prevPage;
+      this.hasNextPage = data.hasNextPage;
+      this.nextPage = data.nextPage;
+      this.isLoading = false;
+    });
+  }
 
   getNextPage(e: PageEvent) {
     this.query.page = e.pageIndex;

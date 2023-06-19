@@ -12,6 +12,14 @@ import { AssignmentsComponent } from './assignments/assignments.component';
 import { AddAssignmentComponent } from './assignments/add-assignment/add-assignment.component';
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
 import { AssignmentDetailComponent } from './assignments/assignment-detail/assignment-detail.component';
+import { EtudiantComponent } from './etudiant/etudiant.component';
+import { EtudiantDetailComponent } from './etudiant/etudiant-detail/etudiant-detail.component';
+import { EtudiantEditComponent } from './etudiant/etudiant-edit/etudiant-edit.component';
+import { EtudiantAddComponent } from './etudiant/etudiant-add/etudiant-add.component';
+import { MatiereComponent } from './matiere/matiere.component';
+import { MatiereDetailComponent } from './matiere/matiere-detail/matiere-detail.component';
+import { MatiereEditComponent } from './matiere/matiere-edit/matiere-edit.component';
+import { MatiereAddComponent } from './matiere/matiere-add/matiere-add.component';
 
 const COMPONENTS: any[] = [
   DashboardComponent,
@@ -25,6 +33,21 @@ const COMPONENTS_DYNAMIC: any[] = [];
 
 @NgModule({
   imports: [SharedModule, RoutesRoutingModule],
-  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC, AssignmentsComponent, AddAssignmentComponent, EditAssignmentComponent, AssignmentDetailComponent],
+  declarations: [
+    ...COMPONENTS,
+    ...COMPONENTS_DYNAMIC,
+    AssignmentsComponent,
+    AddAssignmentComponent,
+    EditAssignmentComponent,
+    AssignmentDetailComponent,
+    EtudiantComponent,
+    EtudiantDetailComponent,
+    EtudiantEditComponent,
+    EtudiantAddComponent,
+    MatiereComponent,
+    MatiereDetailComponent,
+    MatiereEditComponent,
+    MatiereAddComponent,
+  ],
 })
 export class RoutesModule {}

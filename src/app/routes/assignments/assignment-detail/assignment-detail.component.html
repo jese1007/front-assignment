@@ -3,12 +3,12 @@
   <mat-card *ngIf="assignmentTransmis">
     <mat-card-content>
       <div class="text-center">
-        <h2 class="m-t-0 m-b-8 f-w-400">{{ assignmentTransmis.nom }}</h2>
-        <p class="m-t-0 m-b-8">Date de rendu : {{assignmentTransmis.dateDeRendu | date: 'dd/MM/yy'}}</p>
+        <h2 class="m-t-0 m-b-8 f-w-400">{{ assignmentTransmis.name }}</h2>
+        <p class="m-t-0 m-b-8">Date de rendu : {{assignmentTransmis.dueDate | date: 'dd/MM/yy'}}</p>
       </div>
       <mat-nav-list class="m-x--16 m-b--16 m-t-16">
         <mat-divider></mat-divider>
-        <a mat-list-item routerLink="/assignments/edit/{{ assignmentTransmis.id }}">
+        <a mat-list-item routerLink="/assignments/edit/{{ assignmentTransmis._id }}">
           <mat-icon matListItemIcon>settings</mat-icon> EDIT
         </a>
         <mat-divider></mat-divider>

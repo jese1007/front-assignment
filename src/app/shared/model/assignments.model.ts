@@ -1,7 +1,7 @@
 export class Assignment {
   _id!: string;
   id!: number;
-  nom!: string;
-  dateDeRendu!: Date;
-  rendu!: boolean;
+  name!: string;
+  dueDate!: Date;
+  due!: boolean;
 }
