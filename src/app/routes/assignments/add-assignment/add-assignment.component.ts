@@ -6,6 +6,10 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { MatiereService } from '@shared/matiere.service';
+import { EtudiantService } from '@shared/etudiant.service';
+import { Etudiant } from 'app/model/etudiant.model';
+import { Matiere } from 'app/model/matiere.model';
 
 @Component({
   selector: 'app-add-assignment',
@@ -14,11 +18,34 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AddAssignmentComponent {
   // champs du formulaire
+  matieres: Matiere[] = [];
+  eleves: Etudiant[] = [];
   nomDevoir = '';
   dateDeRendu!: Date;
+  auteur?: Etudiant | null;
+  matiere?: Matiere | null;
 
-  constructor(private assignmentsService: AssignmentsService, private router: Router) {}
+  constructor(
+    private assignmentsService: AssignmentsService,
+    private router: Router,
+    private matiereService: MatiereService,
+    private etudiantService: EtudiantService
+  ) {}
+  ngOnInit(): void {
+    this.getSubjects();
+    this.getEtudiants();
+  }
+  getSubjects() {
+    this.matiereService.getMatieres().subscribe(data => {
+      this.matieres = data;
+    });
+  }
 
+  getEtudiants() {
+    this.etudiantService.getEtudiants().subscribe(data => {
+      this.eleves = data;
+    });
+  }
   onSubmit(event: any) {
     // On vérifie que les champs ne sont pas vides
     if (this.nomDevoir === '') return;
@@ -26,9 +53,10 @@ export class AddAssignmentComponent {
 
     const nouvelAssignment = new Assignment();
     // génération d'id, plus tard ce sera fait dans la BD
-    nouvelAssignment.id = Math.abs(Math.random() * 1000000000000000);
-    nouvelAssignment.name = this.nomDevoir;
+    nouvelAssignment.name = this.nomDevoir || '';
     nouvelAssignment.dueDate = this.dateDeRendu;
+    nouvelAssignment.student = this.auteur;
+    nouvelAssignment.subject = this.matiere;
     nouvelAssignment.due = false;
 
     // on demande au service d'ajouter l'assignment

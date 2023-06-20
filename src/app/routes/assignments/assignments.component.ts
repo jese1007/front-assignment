@@ -33,6 +33,8 @@ export class AssignmentsComponent {
   listNoRendu: any[] = [];
   total = 0;
   isLoading = true;
+  totalN = 0;
+  isLoadingN = true;
 
   page = 1;
   limit = 10;
@@ -44,6 +46,16 @@ export class AssignmentsComponent {
   nextPage = 0;
   match = true;
 
+  totalDocsN = 0;
+  totalPagesN = 0;
+  hasPrevPageN = false;
+  prevPageN = 0;
+  hasNextPageN = false;
+  nextPageN = 0;
+  matchN = true;
+  limitN= 10;
+  pageN= 1;
+
   query = {
     q: 'user:nzbin',
     sort: 'stars',
@@ -51,6 +63,7 @@ export class AssignmentsComponent {
     page: 0,
     per_page: 10,
   };
+
 
   get params() {
     const p = Object.assign({}, this.query);
@@ -87,17 +100,17 @@ export class AssignmentsComponent {
   }
 
   getAssignmentsNoRendu() {
-    this.assignmentsService.getAssignments(this.page, this.limit, false).subscribe(data => {
+    this.assignmentsService.getAssignments(this.pageN, this.limitN, false).subscribe(data => {
       this.listNoRendu = data.docs;
-      this.page = data.page;
-      this.limit = data.limit;
-      this.total = data.totalDocs;
-      this.totalPages = data.totalPages;
-      this.hasPrevPage = data.hasPrevPage;
-      this.prevPage = data.prevPage;
-      this.hasNextPage = data.hasNextPage;
-      this.nextPage = data.nextPage;
-      this.isLoading = false;
+      this.pageN = data.page;
+      this.limitN = data.limit;
+      this.totalN = data.totalDocs;
+      this.totalPagesN = data.totalPages;
+      this.hasPrevPageN = data.hasPrevPage;
+      this.prevPageN = data.prevPage;
+      this.hasNextPageN = data.hasNextPage;
+      this.nextPageN = data.nextPage;
+      this.isLoadingN = false;
     });
   }
 
@@ -144,5 +157,12 @@ export class AssignmentsComponent {
     this.page = event.pageIndex;
     this.limit = event.pageSize;
     this.getAssignments();
+  }
+  handlePageNR(event: any) {
+    console.log('test 11',event);
+
+    this.pageN = event.pageIndex;
+    this.limitN = event.pageSize;
+    this.getAssignmentsNoRendu();
   }
 }

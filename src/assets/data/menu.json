@@ -5,18 +5,6 @@
       "name": "assignments",
       "type": "link",
       "icon": "description"
-    },
-    {
-      "route": "etudiant",
-      "name": "Etudiant",
-      "type": "link",
-      "icon": "description"
-    },
-    {
-      "route": "matiere",
-      "name": "Matiere",
-      "type": "link",
-      "icon": "description"
     }
   ]
 }

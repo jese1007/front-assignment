@@ -58,6 +58,7 @@ export class UserComponent implements OnInit {
         debounceTime(10)
       )
       .subscribe(() => this.cdr.detectChanges());
+      console.log('user ===> ',this.user);
   }
 
   logout() {

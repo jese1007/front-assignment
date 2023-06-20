@@ -12,10 +12,68 @@
           <mat-icon matListItemIcon>settings</mat-icon> EDIT
         </a>
         <mat-divider></mat-divider>
-        <a mat-list-item (click)="onDeleteAssignment()">
+        <a *ngIf="user.admin" mat-list-item (click)="onDeleteAssignment()">
           <mat-icon matListItemIcon>delete</mat-icon> DELETE
         </a>
       </mat-nav-list>
     </mat-card-content>
   </mat-card>
+</div>
+<div class="row">
+  <div class=" col-md-4 " *ngIf="assignmentTransmis?.student !== undefined">
+    <mat-card>
+      <mat-card-title>
+        <h3 class="text-center m-t-0 m-b-8 f-w-400">Auteur</h3>
+      </mat-card-title>
+      <mat-card-content>
+        <div class="text-center">
+          <img class="m-b-8 r-full" [src]="'assets/images/avatar/'+assignmentTransmis!.student!.photo" alt="" width="80">
+          <h2 class="m-t-0 m-b-8 f-w-400">{{ assignmentTransmis!.student!.name }}</h2>
+          <p class="m-t-0 m-b-8">{{ assignmentTransmis!.student!.firstName }}</p>
+          <p class="m-t-0 text-grey-500">{{ assignmentTransmis!.student!.age }}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class=" col-md-4 " >
+    <mat-card>
+      <mat-card-title>
+        <h3 class="text-center m-t-0 m-b-8 f-w-400">Note</h3>
+      </mat-card-title>
+      <mat-card-content *ngIf="assignmentTransmis?.mark !== undefined">
+        <div class="text-center">
+          <h2 class="m-t-0 m-b-8 f-w-400">{{ assignmentTransmis!.mark }}</h2>
+        </div>
+      </mat-card-content>
+      <mat-card-content *ngIf="assignmentTransmis?.mark === undefined">
+        <div class="text-center">
+          <a *ngIf="!add" (click)="add=true" mat-raised-button color="primary" target="_blank">
+            Ajout Note</a>
+            <div *ngIf="add">
+              <mat-form-field>
+                <mat-label>Note</mat-label>
+                <input matInput [(ngModel)]="note" name="note" placeholder="Note du devoir" required>
+              </mat-form-field>
+              <br>
+              <button (click)="addNote()" mat-raised-button color="primary" class="m-t-8">Ajout</button>
+              <button (click)="add=false" mat-raised-button color="accent" class="m-t-8 m-l-8">Cancel</button>
+            </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class=" col-md-4 " *ngIf="assignmentTransmis?.student !== undefined">
+    <mat-card>
+      <mat-card-title>
+        <h3 class="text-center m-t-0 m-b-8 f-w-400">Matiere</h3>
+      </mat-card-title>
+      <mat-card-content>
+        <div class="text-center">
+          <img class="m-b-8 r-full" [src]="'assets/images/'+assignmentTransmis!.subject!.picture" alt="" width="80">
+          <h2 class="m-t-0 m-b-8 f-w-400">{{ assignmentTransmis!.subject!.label }}</h2>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
 </div>

@@ -1,1 +1,43 @@
-<p>edit-assignment works!</p>
+<page-header class="bg-blue-600"></page-header>
+<div class="col-sm-12">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Update Assignment</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form ngForm #assignmentForm (submit)="update()"  class="form-field-full">
+        <mat-form-field>
+          <mat-label>Nome</mat-label>
+          <input matInput [(ngModel)]="nomDevoir" name="nom" placeholder="Nom du devoir" required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Date de rendu</mat-label>
+          <mtx-datetimepicker-toggle [for]="picker" matSuffix></mtx-datetimepicker-toggle>
+          <mtx-datetimepicker #picker startView="month" >
+          </mtx-datetimepicker>
+          <input [mtxDatetimepicker]="picker" name="dateDeRendu" [(ngModel)]="dateDeRendu"
+                 matInput required>
+        </mat-form-field>
+        <mat-form-field >
+          <mat-label>Auteur</mat-label>
+          <mat-select [(ngModel)]="auteur" name="auteur">
+            <mat-option>-- None --</mat-option>
+            <mat-option *ngFor="let data of eleves" value="{{data._id}}">{{data.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field >
+          <mat-label>Matiere</mat-label>
+          <mat-select [(ngModel)]="matiere" name="matiere">
+            <mat-option>-- None --</mat-option>
+            <mat-option *ngFor="let data of matieres" value="{{data._id}}">{{data.label}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        <button type="submit" mat-raised-button color="primary" class="m-t-8">Modifier un devoir</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

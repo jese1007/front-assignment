@@ -17,8 +17,22 @@
           <mtx-datetimepicker-toggle [for]="datetimePicker" matSuffix></mtx-datetimepicker-toggle>
           <mtx-datetimepicker #datetimePicker startView="month" [timeInterval]="5">
           </mtx-datetimepicker>
-          <input [mtxDatetimepicker]="datetimePicker" name="date" [(ngModel)]="dateDeRendu"
-                 autocomplete="false" formControlName="dateTime" matInput required>
+          <input [mtxDatetimepicker]="datetimePicker" name="dateDeRendu" [(ngModel)]="dateDeRendu"
+                 autocomplete="false" matInput required>
+        </mat-form-field>
+        <mat-form-field >
+          <mat-label>Auteur</mat-label>
+          <mat-select [(ngModel)]="auteur" name="auteur">
+            <mat-option>-- None --</mat-option>
+            <mat-option *ngFor="let data of eleves" value="{{data._id}}">{{data.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field >
+          <mat-label>Matiere</mat-label>
+          <mat-select [(ngModel)]="matiere" name="matiere">
+            <mat-option>-- None --</mat-option>
+            <mat-option *ngFor="let data of matieres" value="{{data._id}}">{{data.label}}</mat-option>
+          </mat-select>
         </mat-form-field>
 
 

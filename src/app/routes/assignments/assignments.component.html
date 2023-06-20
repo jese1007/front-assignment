@@ -28,13 +28,13 @@
       <div class="m-16">
         <mtx-grid [data]="listNoRendu"
                   [columns]="columns"
-                  [length]="totalPages"
-                  [loading]="isLoading"
+                  [length]="totalPagesN"
+                  [loading]="isLoadingN"
                   [pageOnFront]="false"
-                  [pageIndex]="page"
-                  [pageSize]="limit"
+                  [pageIndex]="pageN"
+                  [pageSize]="limitN"
                   [pageSizeOptions]="[5,10,20]"
-                  (page)="handlePage($event)">
+                  (page)="handlePageNR($event)">
         </mtx-grid>
       </div>
     </mat-tab>

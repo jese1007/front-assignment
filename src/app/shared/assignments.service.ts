@@ -14,7 +14,6 @@ export class AssignmentsService {
   assignments: Assignment[] = [];
   constructor(private loggingService: LoginService, private http: HttpClient) {}
 
-  //uri_api = 'http://localhost:8010/api/assignments';
   uri_api = UrlService.uri_api + 'assignements';
 
   getAssignments(page: number, limit: number, match: boolean): Observable<any> {
@@ -77,7 +76,7 @@ export class AssignmentsService {
   updateAssignment(assignment: Assignment): Observable<any> {
     // Normalement : on appelle un web service pour l'update des
     // données
-    return this.http.put<Assignment>(this.uri_api, assignment);
+    return this.http.put<Assignment>(this.uri_api+ '/' + assignment._id, assignment);
 
     // dans la version tableau : rien à faire (pourquoi ? Parceque assignment
     // est déjà un élément du tableau this.assignments)
@@ -105,7 +104,6 @@ export class AssignmentsService {
   peuplerBD() {
     bdInitialAssignments.forEach(a => {
       const newAssignment = new Assignment();
-      newAssignment.id = a.id;
       newAssignment.name = a.name;
       newAssignment.dueDate = new Date(a.dueDate);
       newAssignment.due = a.due;
@@ -124,7 +122,6 @@ export class AssignmentsService {
 
     bdInitialAssignments.forEach(a => {
       const nouvelAssignment = new Assignment();
-      nouvelAssignment.id = a.id;
       nouvelAssignment.name = a.name;
       nouvelAssignment.dueDate = new Date(a.dueDate);
       nouvelAssignment.due = a.due;
