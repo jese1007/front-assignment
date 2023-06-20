@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class UrlService {
-  // static uri_api = 'https://back-assignments-jese-lionel.onrender.com/';
-  static uri_api = 'http://localhost:6750/';
+  static uri_api = 'https://back-assignments-jese-lionel.onrender.com/';
+  // static uri_api = 'http://localhost:6750/';
   constructor() {}
 }
